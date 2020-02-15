@@ -1,0 +1,10 @@
+﻿@using JubatusAdmin.ViewModels
+@model MemberRoleViewModel
+    <div class="form-group">
+        <label>Değiştirmek İstediğinize Emin misiniz?</label>
+    </div>
+    @Html.HiddenFor(m => m.MemberRole.MemberRoleDesc)
+    @Html.HiddenFor(m => m.MemberRole.IsActive)
+    @Html.HiddenFor(m => m.MemberRole.MemberRoleId)
+
+

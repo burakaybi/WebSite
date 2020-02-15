@@ -1,0 +1,25 @@
+﻿@using JubatusAdmin.ViewModels
+
+@model CategoriesViewModel
+
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kategori Ekleme</h2>
+
+@using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategorieName)
+        @Html.TextBoxFor(m => m.CategorieName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CategorieName)
+    </div>
+    <button type="submit" class="btn btn-success">Ekle</button>
+    <br />
+    if (!String.IsNullOrEmpty(Model.ResultMessage))
+    {
+        <p>@Model.ResultMessage</p>
+    }
+}

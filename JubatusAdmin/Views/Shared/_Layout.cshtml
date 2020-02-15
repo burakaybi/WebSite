@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/navbar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    @Html.Partial("_Tabbar")
+    @Html.Partial("_Navbar")
+
+    <div class="container" style="max-width:100%">
+        <div class="row" style="margin-left:10%; margin-top:9%">
+            <div class="col-12">@RenderBody()</div>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/modal.js"></script>
+    <script src="~/Scripts/activeorpassivequestion.js"></script>
+    <script src="~/Scripts/deletemodal.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+﻿@using JubatusAdmin.ViewModels
+@model MemberRoleViewModel
+    <div class="form-group">
+        <label>Rol Adı</label>
+        @Html.TextBoxFor(m => m.MemberRole.MemberRoleDesc, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.MemberRole.MemberRoleDesc)
+    </div>
+    @Html.HiddenFor(m=>m.MemberRole.IsActive)
+    @Html.HiddenFor(m=>m.MemberRole.MemberRoleId)
+
+

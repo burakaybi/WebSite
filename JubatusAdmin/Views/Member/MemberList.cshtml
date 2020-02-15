@@ -1,0 +1,86 @@
+﻿@using JubatusAdmin.ViewModels
+@model MemberDetailViewModel
+@{
+    ViewBag.Title = "MemberList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@ViewBag.Mesaj
+<h2>Üye Listesi</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>E-mail</th>
+            <th>Member ID </th>
+            <th>Member Role</th>
+            <th>Is Active</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model.MemberList)
+        {
+            <tr>
+                <td>@member.Email</td>
+                <td>@member.MemberId</td>
+                <td>@member.MemberRoleDesc</td>
+                <td>@member.IsActive</td>
+                <td><a href="#" class="btn btn-primary" id="update" data-target="/Member/ShowUpdate/@member.MemberId">Güncelle</a></td>
+                <td><a href="#" class="btn btn-danger" id="delete" data-target="/Member/ShowDelete/@member.MemberId">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="modelView" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Member Update</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="FormSubmit()">Kaydet</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteView" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Member Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="FormSubmitDelete()">Sil</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function FormSubmit() {
+        $("#updateForm").submit();
+    }
+
+</script>
+<script>
+
+    function FormSubmitDelete() {
+        $("#deleteForm").submit();
+    }
+
+</script>
+

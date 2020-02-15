@@ -1,0 +1,17 @@
+﻿@model JubatusAdmin.ViewModels.MemberRoleViewModel
+@{
+    ViewBag.Title = "NewRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni Rol</h2>
+@using (Html.BeginForm("AddRole", "MemberRole", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.MemberRoleDesc)
+        @Html.TextBoxFor(m => m.MemberRoleDesc, new { @class="form-control"})
+        @Html.ValidationMessageFor(m=>m.MemberRoleDesc, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+}
+

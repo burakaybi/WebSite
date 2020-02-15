@@ -1,0 +1,80 @@
+﻿@using JubatusAdmin.ViewModels
+@model MemberRoleViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ActionLink("Yeni Rol Ekle", "NewRole", null, new { @class = "btn btn-success" })
+<h2>Rol Yönetimi</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Rol Adı</th>
+            <th>Düzenle</th>
+            <th>Aktif/Pasif</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model.MemberRoleList)
+        {
+            <tr>
+                <td>@role.MemberRoleDesc</td>
+                <td><a href="#" class="btn btn-primary" id="update" data-target="/MemberRole/ShowRole/@role.MemberRoleId">Düzenle</a></td>
+                <td>
+                    <form action="">
+                            <input type="radio" name="activepassive" id="activeorpassive" value="active"  @(role.IsActive == 1 ? "checked='checked'" : "" ) data-target="/MemberRole/ShowActiveOrPassiveQuestion/@role.MemberRoleId"><label>Aktif</label>
+                            <input type="radio" name="activepassive" id="activeorpassive" value="passive" @(role.IsActive == 0 ? "checked='checked'" : "" ) data-target="/MemberRole/ShowActiveOrPassiveQuestion/@role.MemberRoleId"><label>Pasif</label>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@using (Html.BeginForm("UpdateRole", "MemberRole", FormMethod.Post))
+{
+    <div class="modal fade" id="modelView" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Member Role Update</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+                <form method="post">
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+@using (Html.BeginForm("UpdateActiveOrPassive", "MemberRole", FormMethod.Post))
+{
+    <div class="modal fade" id="activeOrPassiveModel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Active or Passive</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+                <form method="post">
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" >Evet</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+

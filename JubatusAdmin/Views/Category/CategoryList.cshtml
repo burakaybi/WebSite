@@ -1,0 +1,75 @@
+﻿@model List<JubatusAdmin.Models.Categories>
+@{
+    ViewBag.Title = "CategoryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kategoriler</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Kategori ID</th>
+        <th>Kategori Adı</th>
+        <th>Created by</th>
+        <th>Oluşturulma Zamanı</th>
+        <th>IsEnabled</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+
+    </tr>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategorieId</td>
+                <td>@category.CategorieName</td>
+                <td>@category.CreatedBy</td>
+                <td>@category.CreateTime</td>
+                <td>@category.IsEnabled</td>
+
+
+                <td><a href="/Category/ShowCategory/@category.CategorieId" class="btn btn-primary">Güncelle</a></td>
+
+                <td>
+                    <button type="button" id="deleteItem" class="deleteItem" data-target="#basic"
+                            data-toggle="modal"
+                            data-path="@Url.Action("RemoveCategory", "Category", new { id = category.CategorieId })">
+                        Sil
+                    </button>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="basic" tabindex="-1" role="button" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Kategori Silme</h4>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinize emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-default">İptal</button>
+                <button id="btnContinueDelete" type="button" class="btn btn-danger">Sil</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var path_to_delete;
+
+        $(".deleteItem").click(function (e) {
+            path_to_delete = $(this).data('path');
+        });
+
+        $('#btnContinueDelete').click(function () {
+            window.location = path_to_delete;
+        });
+    </script>
+
+</div>

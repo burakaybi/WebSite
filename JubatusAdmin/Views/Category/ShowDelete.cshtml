@@ -1,0 +1,9 @@
+﻿@using JubatusAdmin.ViewModels
+@model CategoriesViewModel
+
+<form action="@Url.Action("RemoveCategory","Category")" method="post" id="deleteForm">
+    <div class="form-group">
+        <label>Silmek İstediğinize Emin misiniz?</label>
+    </div>
+    @Html.HiddenFor(m => m.CategorieId)
+</form>

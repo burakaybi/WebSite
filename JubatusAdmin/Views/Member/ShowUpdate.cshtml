@@ -1,0 +1,19 @@
+﻿@using JubatusAdmin.ViewModels
+@model MemberDetailViewModel
+
+<form action="@Url.Action("Update","Member")" method="post" id="updateForm">
+    <div class="form-group">
+        @Html.LabelFor(m => m.UpdatedMember.Email)
+        @Html.TextBoxFor(m => m.UpdatedMember.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UpdatedMember.Email)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UpdatedMember.MemberRoleDesc)
+        @Html.DropDownListFor(m => m.UpdatedMember.MemberRoleId, new SelectList(Model.Roles, "MemberRoleId", "MemberRoleDesc", Model.UpdatedMember.MemberRoleId), (Model.UpdatedMember.IsActive != 0 ? Model.UpdatedMember.MemberRoleDesc : "Seçiniz"), new { @class = "form-control", style = "height:100%" })
+        @Html.ValidationMessageFor(m => m.UpdatedMember.MemberRoleId)
+    </div>
+    @Html.HiddenFor(m => m.UpdatedMember.MemberId)
+    @Html.HiddenFor(m => m.UpdatedMember.IsActive)
+    @Html.HiddenFor(m => m.UpdatedMember.Password)
+    @Html.HiddenFor(m => m.UpdatedMember.MemberRoleDesc)
+</form>
